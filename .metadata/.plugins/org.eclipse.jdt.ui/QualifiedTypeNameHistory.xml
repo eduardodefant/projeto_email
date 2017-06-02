@@ -43,7 +43,6 @@
 <fullyQualifiedTypeName name="javafx.scene.Scene"/>
 <fullyQualifiedTypeName name="org.omg.CORBA.TIMEOUT"/>
 <fullyQualifiedTypeName name="java.lang.reflect.Constructor"/>
-<fullyQualifiedTypeName name="br.edu.unisep.projetoemail.EmailPrincipalController"/>
 <fullyQualifiedTypeName name="javafx.scene.control.ListView"/>
 <fullyQualifiedTypeName name="javafx.collections.ObservableList"/>
 <fullyQualifiedTypeName name="javafx.scene.control.TableView"/>
@@ -53,10 +52,12 @@
 <fullyQualifiedTypeName name="br.edu.unisep.projetoemail.vo.ReceberEmailVO"/>
 <fullyQualifiedTypeName name="javafx.fxml.FXML"/>
 <fullyQualifiedTypeName name="javafx.scene.control.cell.PropertyValueFactory"/>
-<fullyQualifiedTypeName name="javafx.event.ActionEvent"/>
 <fullyQualifiedTypeName name="java.lang.ArrayIndexOutOfBoundsException"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="br.edu.unisep.utils.MsgUtils"/>
 <fullyQualifiedTypeName name="javax.mail.Session"/>
 <fullyQualifiedTypeName name="javax.mail.Authenticator"/>
+<fullyQualifiedTypeName name="javafx.event.ActionEvent"/>
+<fullyQualifiedTypeName name="br.edu.unisep.projetoemail.EmailPrincipalController"/>
+<fullyQualifiedTypeName name="java.lang.Object"/>
 </qualifiedTypeNameHistroy>
