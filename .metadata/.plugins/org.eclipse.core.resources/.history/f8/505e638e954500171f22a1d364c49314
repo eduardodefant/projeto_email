@@ -1,0 +1,119 @@
+package br.edu.unisep.projetoemail;
+
+import java.io.IOException;
+import java.util.Properties;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Store;
+import br.edu.unisep.fx.controller.GenericController;
+import br.edu.unisep.utils.MsgUtils;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+public class LoginController extends GenericController {
+
+	@FXML
+	private TextField txtLogin;
+
+	@FXML
+	private PasswordField txtSenha;
+
+	@FXML
+	private Button btnLogar;
+
+	@FXML
+	private AnchorPane conteudo;
+
+	@FXML
+	private ImageView imgCarregamento;
+
+	private Boolean loginSucesso = true;
+
+	@Override
+	protected void onControllerStart() {
+		/*--
+		 * Login válido para testes.
+		 */
+		txtLogin.setText("colocar-email-no-fonte");
+		txtSenha.setText("123");
+		imgCarregamento.setVisible(false);
+
+	}
+
+	public void login(ActionEvent event) {
+		imgCarregamento.setVisible(true);
+		Properties props = new Properties();
+
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "465");
+
+		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(txtLogin.getText(), txtSenha.getText());
+			}
+		});
+		// session.setDebug(true); // debug
+		try {
+			loginSucesso = true;
+			Store store = session.getStore("imaps");
+			store.connect("imap.gmail.com", txtLogin.toString(), txtSenha.toString());
+
+		} catch (MessagingException e) {
+			MsgUtils.exibirErro("Email/Senha Invalida!");
+			loginSucesso = false;
+		} catch (Exception e) {
+			MsgUtils.exibirErro("Erro inesperado!");
+		}
+
+		if (loginSucesso == true) {
+			System.out.println("login sucesso true");
+			// imgCarregamento.setVisible(false);
+			abrirTelaPrincipal();
+		}
+
+	}
+
+	public void abrirTelaPrincipal() {
+
+		((Stage) txtLogin.getScene().getWindow()).close();
+
+		Stage janela = new Stage();
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("EmailPrincipal.fxml"));
+
+		AnchorPane conteudo;
+		try {
+			conteudo = (AnchorPane) loader.load();
+
+			Scene cena = new Scene(conteudo);
+			EmailPrincipalController emailPrincipal = loader.getController();
+			emailPrincipal.receberEmail(txtLogin);
+			janela.initModality(Modality.APPLICATION_MODAL);
+			janela.initStyle(StageStyle.UTILITY);
+			janela.setResizable(false);
+			janela.setMaximized(true);
+			janela.setScene(cena);
+			janela.show();
+
+		} catch (IOException e) {
+			MsgUtils.exibirErro("Problema ao tentar carregar arquivo da tela.");
+			e.printStackTrace();
+
+		}
+	}
+
+}

@@ -1,0 +1,36 @@
+package br.edu.unisep.projetoemail;
+
+import br.edu.unisep.fx.controller.GenericController;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.text.Text;
+
+public class EmailPrincipalController extends GenericController {
+
+	@FXML
+	private Button btnNovoEmail;
+
+	@FXML
+	private Button btnReceberEmails;
+
+	@FXML
+	private Button btnNovoContato;
+
+	@FXML
+	private Text txtEmailAtual;
+
+	public void novoContato(ActionEvent event) {
+		openModal("NovoContato.fxml");
+	}
+
+	public void enviarEmail(ActionEvent event){
+		openModal("NovoEmail.fxml");
+	}
+
+
+
+
+
+
+}

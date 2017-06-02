@@ -1,0 +1,24 @@
+package br.edu.unisep.projetoemail.vo;
+
+public class ReceberEmailVO {
+
+	private String Remetente;
+
+	private String Nome;
+
+	public String getRemetente() {
+		return Remetente;
+	}
+
+	public void setRemetente(String remetente) {
+		Remetente = remetente;
+	}
+
+	public String getNome() {
+		return Nome;
+	}
+
+	public void setNome(String nome) {
+		Nome = nome;
+	}
+}
