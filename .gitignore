@@ -2,6 +2,8 @@
 *.class
 *.dat
 *.ini
+*.snap
+*.metadata
 
 # Log file
 *.log
